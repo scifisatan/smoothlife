@@ -8,9 +8,6 @@ canvas.height = window.innerHeight;
 cellWidth = 10;
 cellHeight = 10;
 
-nrows = Math.floor(canvas.height / cellHeight);
-ncols = Math.floor(canvas.width / cellWidth);
-
 WIDTH = Math.floor(canvas.width / cellWidth);
 HEIGHT = Math.floor(canvas.height / cellHeight);
 
