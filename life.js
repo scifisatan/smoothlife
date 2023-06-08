@@ -1,5 +1,4 @@
 canvas = document.getElementById("life");
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 cellWidth = 10;
@@ -12,18 +11,6 @@ WIDTH = Math.floor(canvas.width / cellWidth);
 HEIGHT = Math.floor(canvas.height / cellHeight);
 
 const ctx = canvas.getContext("2d", { alpha: false });
-// let ctx = canvas.getContext("2d");
-
-// for (let i = 0; i < WIDTH; +i++) {
-//     for (let j = 0; j < HEIGHT; j++) {
-//       ctx.fillStyle = `rgb(
-//           ${Math.floor(255 - 2 * i)},
-//           ${Math.floor(255 - 2 * j)},
-//           0)`;
-//       ctx.fillRect(j * 25, i * 25, 25, 25);
-//     }
-//   }
-
 let grid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random() ));
 let nextGrid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random() ));
 
