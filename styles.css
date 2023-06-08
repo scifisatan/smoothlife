@@ -1,0 +1,20 @@
+html,body{
+    margin:0;
+    padding: 0;
+}
+
+#card{
+    position: aboslute;
+    z-index: 1;
+    width:20%;
+
+}
+
+#site{
+    position: absolute;
+}
+
+canvas{
+    position: absolute;
+    z-index: 0;
+}
