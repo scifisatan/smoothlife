@@ -21,7 +21,7 @@ let val = {
   "b2": 0.365,
   "d1": 0.267,
   "d2": 0.445,
-  "alpha": 1,
+  "alpha": 0.9,
   "innerRadius":2,
   "outerRadius": 4,
 }
