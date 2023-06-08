@@ -21,14 +21,14 @@ let val = {
   "b2": 0.365,
   "d1": 0.267,
   "d2": 0.445,
-  "alpha": 0.147,
-  "innerRadius":7,
-  "outerRadius": 21,
+  "alpha": 1,
+  "innerRadius":2,
+  "outerRadius": 4,
 }
 
 let render = (matrix) => {
-  for (let i = 0; i < nrows; i++) {
-    for(let j = 0; j <= ncols; j++) {
+  for (let i = 0; i < HEIGHT; i++) {
+    for(let j = 0; j <= WIDTH; j++) {
       color = Math.floor(matrix[i][j] * 255);
       ctx.fillStyle = 'rgb('+color+','+color+','+color+')';
       ctx.fillRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
@@ -37,19 +37,30 @@ let render = (matrix) => {
 }
 
 const sigma1 = (x, a) => {
-  return 1 / (1 + Math.exp(x - a) * 4 / val["alpha"]);
+  return 1 / (1 + Math.exp(-(x - a) * 4 /val["alpha"]));
 }
 
 const sigma2 = (x, a, b) => {
   return sigma1(x, a) * (1 - sigma1(x, b));
 }
 
-const sigmam = (x, y, m) => {
+const sigmaM = (x, y, m) => {
   return x * (1 - sigma1(m, 0.5)) + y * sigma1(m, 0.5);
 }
 
 const state = (n, m) => {
-  return sigma2(n, sigmam(val["b1"], val["d1"], m), sigmam(val["b2"], val["d2"], m));
+  return sigma2(
+    n,
+    sigmaM(
+      val["b1"],
+      val["d1"],
+      m),
+    sigmaM(
+      val["b2"], 
+      val["d2"], 
+      m
+    )
+   );
 }
 
 function calculateMean(array, centerX, centerY, radius) {
@@ -80,17 +91,22 @@ function calculateMean(array, centerX, centerY, radius) {
 
 const update = (grid,nextGrid) => {
  
-  for (let i = 0; i < nrows; i++) {
-    for(let j = 0; j <= ncols; j++) {
-      n = calculateMean(grid, i, j, val["outerRadius"]);
-      m = calculateMean(grid, i, j, val["innerRadius"]);
+  for (let i = 0; i < HEIGHT; i++) {
+    for(let j = 0; j <= WIDTH; j++) {
+      n = calculateMean(grid, i, j, 21);
+      m = calculateMean(grid, i, j, 7);
+
+      n = n - m;
+      // console.log(n,m)
+      console.log(state(n, m))
       // n = a-m;
       nextGrid[i][j] = state(n, m);
+      // nextGrid[i][j] = 1-grid[i][j];
     }
   }
 }
 
-render(grid);
+// render(grid);
 
 canvas.addEventListener("click", (e) => {
   update(grid,nextGrid);
