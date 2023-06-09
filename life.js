@@ -13,11 +13,13 @@ HEIGHT = Math.floor(canvas.height / cellHeight);
 
 const ctx = canvas.getContext("2d", { alpha: false });
 
+b1= document.getElementByID("b1").value
+
 let grid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random() ));
 let nextGrid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random() ));
 
 let val = {
-  "b1": 0.002,
+  "b1": b1,
   "b2": 0.9,
   "d1": 0.45,
   "d2": 0.87,
