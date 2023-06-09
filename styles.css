@@ -1,20 +1,21 @@
 html,body{
     margin:0;
     padding: 0;
+    user-select: none;
 }
-
 #card{
-    position: aboslute;
+    /* position: aboslute; */
+    background-color: aqua;
+    width:20vh;
+    height:20vh;
+}
+
+.site{
+    position:relative;
     z-index: 1;
-    width:20%;
-
 }
 
-#site{
-    position: absolute;
-}
-
-canvas{
-    position: absolute;
-    z-index: 0;
+.canvas{
+    position:absolute;
+    z-index: 2 ;
 }

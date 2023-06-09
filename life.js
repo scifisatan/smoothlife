@@ -17,13 +17,13 @@ let grid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cel
 let nextGrid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random() ));
 
 let val = {
-  "b1": 0.3,
-  "b2": 0.35,
-  "d1": 0.3,
-  "d2": 0.5,
-  "alpha": 0.2,
-  "innerRadius":7,
-  "outerRadius":9,
+  "b1": 0.002,
+  "b2": 0.9,
+  "d1": 0.45,
+  "d2": 0.87,
+  "alpha": 0.178,
+  "innerRadius":2,
+  "outerRadius":12,
 }
 
 let render = (matrix) => {
@@ -153,6 +153,15 @@ canvas.addEventListener("click", (e) => {
   // console.log(res[0], res[1])
 
 });
+
+setInterval(() => {
+  update(grid,nextGrid);
+  [grid, nextGrid] = [nextGrid, grid];
+  render(grid);
+}
+, 1000/24);
+
+
 
 
 
