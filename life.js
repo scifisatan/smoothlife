@@ -5,8 +5,8 @@ canvas = document.getElementById("life");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-cellWidth = 10;
-cellHeight = 10;
+cellWidth = 5;
+cellHeight = 5;
 
 WIDTH = Math.floor(canvas.width / cellWidth);
 HEIGHT = Math.floor(canvas.height / cellHeight);
@@ -17,13 +17,13 @@ let grid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cel
 let nextGrid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random() ));
 
 let val = {
-  "b1": 0.278,
-  "b2": 0.365,
-  "d1": 0.267,
-  "d2": 0.445,
-  "alpha": 0.9,
-  "innerRadius":2,
-  "outerRadius": 4,
+  "b1": 0.3,
+  "b2": 0.35,
+  "d1": 0.3,
+  "d2": 0.5,
+  "alpha": 0.2,
+  "innerRadius":7,
+  "outerRadius":9,
 }
 
 let render = (matrix) => {
@@ -63,42 +63,76 @@ const state = (n, m) => {
    );
 }
 
-function calculateMean(array, centerX, centerY, radius) {
-  let sum = 0;
-  let count = 0;
-  let mean = 0;
+// function calculateMean(array, centerX, centerY, radius) {
+//   let sum = 0;
+//   let count = 0;
+//   let mean = 0;
 
-  const arrayWidth = array.length;
-  const arrayHeight = array[0].length;
+//   const arrayWidth = array.length;
+//   const arrayHeight = array[0].length;
 
-  for (let i = centerX - radius; i <= centerX + radius; i++) {
-    for (let j = centerY - radius; j <= centerY + radius; j++) {
+//   for (let i = centerX - radius; i <= centerX + radius; i++) {
+//     for (let j = centerY - radius; j <= centerY + radius; j++) {
   
       
-      if (i >= 0 && i < arrayWidth && j >= 0 && j < arrayHeight) {
-        sum += array[i][j];
-        count++;
+//       if (i >= 0 && i < arrayWidth && j >= 0 && j < arrayHeight) {
+//         sum += array[i][j];
+//         count++;
+//       }
+//     }
+//   }
+
+//   mean = sum / count;
+//   return mean;
+// }
+
+
+const emod = (x, y) => {
+  return (x%y + y)%y;
+}
+
+const calculateMean = (array, centerX, centerY, radius) => {
+  ri = radius/3;
+  m = n = M = N = 0;
+  for (let i = -(radius-1); i <= (radius - 1); ++i) {
+  for (let j = -(radius-1) ; j <= (radius-1); ++j) {
+      if (i >= 0 && i < array.length && j >= 0 && j < array[0].length) {
+          x = emod(j + centerX , WIDTH);
+          y = emod(i + centerY , HEIGHT);
+
+          if(i*i + j*j <= ri*ri) {
+            m += array[y][x];
+            M++;
+          }
+          else if(i*i + j*j <= radius*radius) {
+            n += array[y][x];
+            N++;
+          }
+
+          }
+
+
       }
     }
-  }
 
-  mean = sum / count;
-  return mean;
-}
+    return [n/N, m/M] ;
+  }
 
 
 
 
 const update = (grid,nextGrid) => {
- 
+  res = new Array(2);
+  m = n = 0;
   for (let i = 0; i < HEIGHT; i++) {
     for(let j = 0; j <= WIDTH; j++) {
-      n = calculateMean(grid, i, j, 21);
-      m = calculateMean(grid, i, j, 7);
+      res = calculateMean(grid, i, j, val["outerRadius"]);
+  
 
-      n = n - m;
+      n = res[0];
+      m = res[1];
       // console.log(n,m)
-      console.log(state(n, m))
+      // console.log(state(n, m))
       // n = a-m;
       nextGrid[i][j] = state(n, m);
       // nextGrid[i][j] = 1-grid[i][j];
@@ -112,6 +146,12 @@ canvas.addEventListener("click", (e) => {
   update(grid,nextGrid);
   [grid, nextGrid] = [nextGrid, grid];
   render(grid);
+  // res = new Array(2);
+  // x = Math.floor(e.offsetX/cellWidth);
+  // y = Math.floor(e.offsetY/cellHeight);
+  // res[1] = calculateMean(grid, x, y, val["outerRadius"]);
+  // console.log(res[0], res[1])
+
 });
 
 
