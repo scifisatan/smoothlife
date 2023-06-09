@@ -1,3 +1,6 @@
+
+
+
 // import {state} from './blackbox.js';
 
 canvas = document.getElementById("life");
@@ -13,13 +16,11 @@ HEIGHT = Math.floor(canvas.height / cellHeight);
 
 const ctx = canvas.getContext("2d", { alpha: false });
 
-
-
 let grid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random() ));
 let nextGrid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random() ));
 
 let val = {
-  "b1": 1,
+  "b1": 0.002,
   "b2": 0.9,
   "d1": 0.45,
   "d2": 0.87,
@@ -203,6 +204,24 @@ setInterval(() => {
   render(grid);
 }
 , 1000/2);
+
+
+
+
+
+
+
+
+      
+  
+
+    
+
+
+
+
+
+
 
 
 
