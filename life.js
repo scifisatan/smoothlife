@@ -19,7 +19,7 @@ let grid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cel
 let nextGrid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random() ));
 
 let val = {
-  "b1": b1,
+  "b1": 1,
   "b2": 0.9,
   "d1": 0.45,
   "d2": 0.87,
