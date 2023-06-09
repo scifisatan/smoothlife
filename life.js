@@ -26,6 +26,71 @@ let val = {
   "outerRadius":12,
 }
 
+
+// function generateHexColor(value) {
+//   const hue = Math.floor(value * 360);
+//   const saturation = 100;
+//   const lightness = 50;
+
+//   // Convert HSL to RGB
+//   const hslToRgb = (h, s, l) => {
+//     h /= 360;
+//     s /= 100;
+//     l /= 100;
+  
+//     let r, g, b;
+  
+//     if (s === 0) {
+//       r = g = b = l; // achromatic
+//     } else {
+//       const hue2rgb = (p, q, t) => {
+//         if (t < 0) t += 1;
+//         if (t > 1) t -= 1;
+//         if (t < 1 / 6) return p + (q - p) * 6 * t;
+//         if (t < 1 / 2) return q;
+//         if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+//         return p;
+//       };
+  
+//       const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+//       const p = 2 * l - q;
+  
+//       r = hue2rgb(p, q, h + 1 / 3);
+//       g = hue2rgb(p, q, h);
+//       b = hue2rgb(p, q, h - 1 / 3);
+//     }
+  
+//     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+//   };
+
+//   // Convert RGB to hex
+//   const rgbToHex = (r, g, b) => {
+//     const toHex = (c) => {
+//       const hex = c.toString(16);
+//       return hex.length === 1 ? '0' + hex : hex;
+//     };
+
+//     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+//   };
+
+//   // Convert HSL to RGB and then to hex
+//   const [r, g, b] = hslToRgb(hue, saturation, lightness);
+//   const hexColor = rgbToHex(r, g, b);
+
+//   return hexColor;
+// }
+
+
+// let render = (matrix) => {
+//   for (let i = 0; i < HEIGHT; i++) {
+//     for(let j = 0; j <= WIDTH; j++) {
+//       color = generateHexColor(matrix[i][j]);
+//       ctx.fillStyle = color;
+//       ctx.fillRect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+//     }
+//   }
+// }
+
 let render = (matrix) => {
   for (let i = 0; i < HEIGHT; i++) {
     for(let j = 0; j <= WIDTH; j++) {
@@ -62,30 +127,6 @@ const state = (n, m) => {
     )
    );
 }
-
-// function calculateMean(array, centerX, centerY, radius) {
-//   let sum = 0;
-//   let count = 0;
-//   let mean = 0;
-
-//   const arrayWidth = array.length;
-//   const arrayHeight = array[0].length;
-
-//   for (let i = centerX - radius; i <= centerX + radius; i++) {
-//     for (let j = centerY - radius; j <= centerY + radius; j++) {
-  
-      
-//       if (i >= 0 && i < arrayWidth && j >= 0 && j < arrayHeight) {
-//         sum += array[i][j];
-//         count++;
-//       }
-//     }
-//   }
-
-//   mean = sum / count;
-//   return mean;
-// }
-
 
 const emod = (x, y) => {
   return (x%y + y)%y;
@@ -159,7 +200,7 @@ setInterval(() => {
   [grid, nextGrid] = [nextGrid, grid];
   render(grid);
 }
-, 1000/24);
+, 1000/2);
 
 
 
