@@ -3,19 +3,89 @@ html,body{
     padding: 0;
     user-select: none;
 }
-#card{
-    /* position: aboslute; */
-    background-color: aqua;
-    width:20vh;
-    height:20vh;
-}
-
-.site{
+/* .site{
     position:relative;
-    z-index: 1;
 }
 
-.canvas{
-    position:absolute;
-    z-index: 2 ;
-}
+.element{
+    position: absolute;
+} */
+
+/* #card{
+    z-index: 10;
+    color:black;
+    background-color: gainsboro;
+    margin:2em;
+    width: 20em;
+    border-radius: 10px;
+    padding: 2em;
+    align-content: center;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: 0.2s;
+    
+} */
+/* 
+#canvas{
+    z-index: -1;
+} */
+
+/* good styling for 3 buttons */
+/* #buttons{
+    z-index: 10;
+    color:black;
+    background-color: gainsboro;
+    margin:2em;
+    width: 20em;
+    height: 15em;
+    border-radius: 10px;
+    padding: 2em;
+    align-content: center;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: 0.2s;
+    cursor: pointer;
+} */
+
+/*button styling*/
+/* #play{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+} */
+/*button styling for pause button*/
+/* #pause{
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+} */
+/*button styling for reset button*/
+/* #reset{
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+} */
