@@ -16,17 +16,24 @@ const ctx = canvas.getContext("2d", { alpha: false });
 let val = {
   "b1": 0.278,
   "b2": 0.365,
-  "d1": 0.267,
+  "d1": 0.167,
   "d2": 0.445,
-  "dt": 0.07,
+  "dt": 0.5,
   "alphaM": 0.147,
   "alphaN": 0.028,
   "innerRadius": 7,
-  "outerRadius": 21
+  "outerRadius": 15
 }
 
-let grid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random()));
-let nextGrid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0).map(cell => Math.random()));
+let grid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0));
+let nextGrid = new Array(HEIGHT).fill(0).map(row => new Array(WIDTH).fill(0));
+
+for (let i = 0; i < 120/2; i++) {
+    for (let j = 0; j <= 120/2; j++) {
+        grid[i][j] = Math.random();
+    }
+  }
+
 
 let render = (matrix) => {
   for (let i = 0; i < HEIGHT; i++) {
@@ -128,7 +135,7 @@ setInterval(() => {
 
 
 }
-  , 1000 / 50);
+  , 1000 / 240);
 
 
 //play pause and reset button use
@@ -157,11 +164,6 @@ setInterval(() => {
 //   render(grid);
 // }
 // );
-
-
-
-
-
 
 
 
